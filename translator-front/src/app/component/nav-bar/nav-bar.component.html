@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" routerLink="/home">
+        <img src="assets/icon/rist_logo_2.png" alt="" width="80" height="50">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/home"><i class="bi bi-house-door"></i></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/playlist">My Playlist</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="openModal()">Song</a>
+            </li>
+        </ul>
+        <app-search-bar (searchEvent)="onSearch($event)"></app-search-bar>
+        <a class="nav-link" routerLink="/user-profile"><i class="bi bi-person-circle"></i></a>
+    </div>
+</nav>
+
+<div bsModal #modal="bs-modal" class="modal fade" id="modal" tabindex="-1" role="dialog" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal">Modal title</h5>
+                <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+        <label for="audioFile">Audio File:</label>
+        <input type="file" class="form-control-file" id="audioFile" name="audioFile" (change)="onFileSelected($event)">
+    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+                <button type="button" class="btn btn-primary" (click)="addSong()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

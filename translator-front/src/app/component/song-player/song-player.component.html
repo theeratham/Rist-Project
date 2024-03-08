@@ -1,0 +1,11 @@
+<div class="music-player container bg-dark p-5">
+    <audio #audioPlayer>
+        <source [src]="audioSrc" type="audio/mp3">
+    </audio>
+    <div class="controls">
+        <button (click)="togglePlayPause()">
+            {{ isPlaying ? 'Pause' : 'Play' }}
+        </button>
+        <button (click)="stop()">Stop</button>
+    </div>
+</div>
