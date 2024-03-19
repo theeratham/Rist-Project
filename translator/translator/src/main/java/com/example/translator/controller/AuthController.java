@@ -58,7 +58,7 @@ public class AuthController {
                 return ResponseEntity.ok().body(response);
             }
         }
-        response.setMessage("Input Field Cannot Be Null Or Empty");
+        response.setMessage("Input Field Cannot Be Empty");
         return ResponseEntity.badRequest().body(response);
     }
 
@@ -75,12 +75,12 @@ public class AuthController {
                 return ResponseEntity.badRequest().body(response);
             }
             else {
-                userInfoService.addUser(request);
+                userInfoService.addUser2(request);
                 response.setMessage("User Added Successfully!!");
                 return ResponseEntity.ok().body(response);
             }
         }
-        response.setMessage("Input Field Cannot Be Null Or Empty");
+        response.setMessage("Input Field Cannot Be Empty");
         return ResponseEntity.badRequest().body(response);
     }
 

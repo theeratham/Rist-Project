@@ -14,8 +14,14 @@ public class SongService {
     @Autowired
     private SongRepository songRepository;
 
-    public void findSongId(Long song_id){
-        songRepository.findById(song_id);
+    public Song findSongById(Long song_id){
+        return songRepository.findById(song_id).orElseThrow(
+                () -> new RuntimeException("Song Not Found"));
+    }
+
+    public Song findSongByName(String song_name){
+        return songRepository.findByName(song_name).orElseThrow(
+                () -> new RuntimeException("Song Not Found"));
     }
 
     public List<Song> findAllSong(){

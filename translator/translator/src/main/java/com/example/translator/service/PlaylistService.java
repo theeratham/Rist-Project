@@ -24,6 +24,11 @@ public class PlaylistService {
         playlistRepository.deleteById(playlist_id);
     }
 
+    public Playlist findPlaylistByName(String playlist_name){
+        return playlistRepository.findByName(playlist_name).orElseThrow(
+                () -> new RuntimeException("Playlist Not Found"));
+    }
+
     public boolean isInputNull(PlaylistRequest request){
         return request.getPlaylist_name() == null || request.getPlaylist_name().isEmpty() ||
                 request.getUser_id() == null;

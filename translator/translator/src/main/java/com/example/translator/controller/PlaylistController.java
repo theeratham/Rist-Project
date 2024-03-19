@@ -1,34 +1,36 @@
 package com.example.translator.controller;
 
-import com.example.translator.entity.Song;
 import com.example.translator.entity.request.PlaylistRequest;
-import com.example.translator.entity.request.UserRequest;
 import com.example.translator.entity.response.DataResponse;
 import com.example.translator.repository.PlaylistRepository;
-import com.example.translator.repository.UserRepository;
 import com.example.translator.service.PlaylistService;
-import com.example.translator.service.SongService;
-import com.example.translator.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/user")
-public class UserController {
-    @Autowired
-    private UserInfoService userInfoService;
-    @Autowired
-    private UserRepository userRepository;
+@RequestMapping("/playlist")
+public class PlaylistController {
     @Autowired
     private PlaylistService playlistService;
     @Autowired
     private PlaylistRepository playlistRepository;
 
-    @PostMapping("/playlist/addPlaylist")
-    public ResponseEntity<DataResponse> createPlaylist(@RequestBody PlaylistRequest request){
+    @GetMapping("/findByName")
+    public ResponseEntity<DataResponse> findByName(@RequestParam String playlist_name){
+        DataResponse response = new DataResponse();
+        try {
+            response.setMessage(playlistService.findPlaylistByName(playlist_name));
+            return ResponseEntity.ok().body(response);
+        } catch (Exception e){
+            response.setMessage(e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
+
+
+    @PostMapping("/addPlaylist")
+    public ResponseEntity<DataResponse> addPlaylist(@RequestBody PlaylistRequest request){
         DataResponse response = new DataResponse();
         if (!playlistService.isInputNull(request)){
             if (playlistRepository.existsByName(request.getPlaylist_name())){
@@ -49,8 +51,21 @@ public class UserController {
         return ResponseEntity.badRequest().body(response);
     }
 
-    @PutMapping("/playlist/renamePlaylist/{playlist_id}")
-    public ResponseEntity<DataResponse> editPlaylist(@PathVariable Long playlist_id, String playlist_name){
+    @PostMapping("/addSongToPlaylist")
+    public ResponseEntity<DataResponse> addSongToPlaylist(@RequestParam Long playlist_id, @RequestParam Long song_id){
+        DataResponse response = new DataResponse();
+        try {
+            playlistService.addSongToPlaylist(playlist_id, song_id);
+            response.setMessage("Song Has Been Added To Playlist");
+            return ResponseEntity.ok().body(response);
+        } catch (Exception e){
+            response.setMessage(e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
+
+    @PutMapping("/editPlaylist")
+    public ResponseEntity<DataResponse> editPlaylist(@RequestParam Long playlist_id,@RequestParam String playlist_name){
         DataResponse response = new DataResponse();
         if (playlist_name != null) {
             try {
@@ -62,13 +77,13 @@ public class UserController {
                 return ResponseEntity.badRequest().body(response);
             }
         } else {
-            response.setMessage("Input Field Cannot Be Null Or Empty");
+            response.setMessage("Input Field Cannot Be Empty");
             return ResponseEntity.badRequest().body(response);
         }
     }
 
-    @DeleteMapping("/playlist/deleteById/{playlist_id}")
-    public ResponseEntity<DataResponse> deletePlaylistById(@PathVariable Long playlist_id){
+    @DeleteMapping("/deletePlaylist")
+    public ResponseEntity<DataResponse> deletePlaylist(@RequestParam Long playlist_id){
         DataResponse response = new DataResponse();
         if (playlist_id != null){
             playlistService.deletePlaylist(playlist_id);
@@ -76,19 +91,6 @@ public class UserController {
             return ResponseEntity.ok().body(response);
         } else {
             response.setMessage("Playlist Not Found");
-            return ResponseEntity.badRequest().body(response);
-        }
-    }
-
-    @PostMapping("/playlist/addSongToPlaylist")
-    public ResponseEntity<DataResponse> addSongToPlaylist(@RequestParam Long playlist_id, @RequestParam Long song_id){
-        DataResponse response = new DataResponse();
-        try {
-            playlistService.addSongToPlaylist(playlist_id, song_id);
-            response.setMessage("Song Has Been Added To Playlist");
-            return ResponseEntity.ok().body(response);
-        } catch (Exception e){
-            response.setMessage(e.getMessage());
             return ResponseEntity.badRequest().body(response);
         }
     }

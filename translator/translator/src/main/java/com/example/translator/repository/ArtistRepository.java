@@ -1,13 +1,13 @@
 package com.example.translator.repository;
 
-import com.example.translator.entity.Song;
+import com.example.translator.entity.Artist;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface SongRepository extends JpaRepository<Song,Long> {
+public interface ArtistRepository extends JpaRepository<Artist,Long> {
     boolean existsByName(String name);
-    Optional<Song> findByName(String name);
+    Optional<Artist> findByName(String name);
 }

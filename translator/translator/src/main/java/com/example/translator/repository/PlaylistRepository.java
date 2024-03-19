@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface PlaylistRepository extends JpaRepository<Playlist, Long> {
     boolean existsByName(String name);
+    Optional<Playlist> findByName(String name);
 }
