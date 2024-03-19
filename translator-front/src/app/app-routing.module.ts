@@ -5,6 +5,7 @@ import { RegisterComponent } from './page/register/register.component';
 import { HomeComponent } from './page/home/home.component';
 import { PlaylistComponent } from './page/playlist/playlist.component';
 import { UserProfileComponent } from './page/user-profile/user-profile.component';
+import { SongComponent } from './page/song/song.component';
 
 const routes: Routes = [
   { path: '' , redirectTo: '/login', pathMatch: 'full'},
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'user-profile',
     component: UserProfileComponent
+  },
+  {
+    path: 'song',
+    component: SongComponent
   }
 ];
 

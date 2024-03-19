@@ -14,6 +14,7 @@ import { UserProfileComponent } from './page/user-profile/user-profile.component
 import { NavBarComponent } from './component/nav-bar/nav-bar.component';
 import { PlaylistComponent } from './page/playlist/playlist.component';
 import { SongPlayerComponent } from './component/song-player/song-player.component';
+import { SongComponent } from './page/song/song.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SongPlayerComponent } from './component/song-player/song-player.compone
     UserProfileComponent,
     NavBarComponent,
     PlaylistComponent,
-    SongPlayerComponent
+    SongPlayerComponent,
+    SongComponent
   ],
   imports: [
     BrowserModule,

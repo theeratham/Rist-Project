@@ -1,0 +1,46 @@
+<app-nav-bar></app-nav-bar>
+<div class="container mt-5">
+    <h1>All Song</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Artist</th>
+                <th>Album</th>
+                <th>Duration</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- <tr *ngFor="let song of songs; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ song.title }}</td>
+                <td>{{ song.artist }}</td>
+                <td>{{ song.album }}</td>
+                <td>{{ song.duration }}</td>
+            </tr> -->
+        </tbody>
+    </table>
+</div>
+<div bsModal #modal="bs-modal" class="modal fade" id="modal" tabindex="-1" role="dialog" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal">Modal title</h5>
+                <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+        <label for="audioFile">Audio File:</label>
+        <input type="file" class="form-control-file" id="audioFile" name="audioFile" (change)="onFileSelected($event)">
+    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+                <button type="button" class="btn btn-primary" (click)="addSong()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

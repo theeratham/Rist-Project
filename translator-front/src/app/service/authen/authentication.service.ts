@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AuthRequest } from '../component/auth-request';
-import { UserRequest } from '../component/user-request';
+import { AuthRequest } from '../../component/auth-request';
+import { UserRequest } from '../../component/user-request';
 
 
 @Injectable({
