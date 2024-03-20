@@ -18,6 +18,11 @@ public class Song {
     @Lob
     private byte[] file;
 
-    @OneToOne(mappedBy = "song")
+    @ManyToOne
+    @JoinColumn(name = "album_id")
+    private Album album;
+
+    @OneToOne
+    @JoinColumn(name = "lyrics_id")
     private Lyrics lyrics;
 }

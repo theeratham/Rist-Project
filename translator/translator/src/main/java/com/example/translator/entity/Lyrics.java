@@ -16,7 +16,6 @@ public class Lyrics {
     private Long id;
     private byte[] file;
 
-    @OneToOne
-    @JoinColumn(name = "song_id")
+    @OneToOne(mappedBy = "lyrics")
     private Song song;
 }

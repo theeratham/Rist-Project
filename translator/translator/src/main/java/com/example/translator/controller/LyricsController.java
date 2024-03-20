@@ -12,10 +12,10 @@ public class LyricsController {
     @Autowired
     private LyricsService lyricsService;
     @PostMapping("/addLyrics")
-    public ResponseEntity<DataResponse> addLyrics(@RequestParam("file") MultipartFile file, @RequestParam Long song_id){
+    public ResponseEntity<DataResponse> addLyrics(@RequestParam("file") MultipartFile file){
         DataResponse response = new DataResponse();
         try {
-            lyricsService.uploadLyrics(file, song_id);
+            lyricsService.uploadLyrics(file);
             response.setMessage("Lyrics Upload Successfully!!");
             return ResponseEntity.ok().body(response);
         } catch (Exception e){
@@ -25,7 +25,7 @@ public class LyricsController {
     }
 
     @DeleteMapping("/deleteById")
-    public ResponseEntity<DataResponse> deleteLyricsById(@RequestParam Long lyrics_id){
+    public ResponseEntity<DataResponse> deleteLyrics(@RequestParam Long lyrics_id){
         DataResponse response = new DataResponse();
         if (lyrics_id != null){
             lyricsService.deleteLyrics(lyrics_id);

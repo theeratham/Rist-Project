@@ -49,10 +49,10 @@ public class SongController {
     }
 
     @PostMapping("/addSong")
-    public ResponseEntity<DataResponse> addSong(@RequestParam("file") MultipartFile file){
+    public ResponseEntity<DataResponse> addSong(@RequestParam("file") MultipartFile file, @RequestParam Long album_id, @RequestParam Long lyrics_id){
         DataResponse response = new DataResponse();
         try {
-            songService.uploadSong(file);
+            songService.uploadSong(file,album_id,lyrics_id);
             response.setMessage("Song uploaded successfully!!");
             return ResponseEntity.ok().body(response);
         } catch (Exception e){

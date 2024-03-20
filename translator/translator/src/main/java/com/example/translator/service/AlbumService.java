@@ -29,7 +29,5 @@ public class AlbumService {
         albumRepository.save(album);
     }
 
-    //TODO: link song to album
-
 
 }

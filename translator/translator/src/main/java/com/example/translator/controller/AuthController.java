@@ -12,10 +12,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
@@ -26,6 +23,30 @@ public class AuthController {
     private UserInfoService userInfoService;
     @Autowired
     private UserRepository userRepository;
+
+    @GetMapping("/findId")
+    public ResponseEntity<DataResponse> findId(@RequestParam Long user_id){
+        DataResponse response = new DataResponse();
+        try {
+            response.setMessage(userInfoService.findUserById(user_id));
+            return ResponseEntity.ok().body(response);
+        } catch (Exception e){
+            response.setMessage(e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
+
+    @GetMapping("/findUsername")
+    public ResponseEntity<DataResponse> findUsername(@RequestParam String username){
+        DataResponse response = new DataResponse();
+        try {
+            response.setMessage(userInfoService.findUsername(username));
+            return ResponseEntity.ok().body(response);
+        } catch (Exception e){
+            response.setMessage(e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
 
     @PostMapping("/login")
     public ResponseEntity<DataResponse> authenticateUser(@RequestBody AuthRequest authRequest) {

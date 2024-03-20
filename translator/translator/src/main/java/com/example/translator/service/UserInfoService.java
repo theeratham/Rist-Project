@@ -26,7 +26,15 @@ public class UserInfoService implements UserDetailsService {
 
         // Converting userDetail to UserDetails
         return userDetail.map(UserInfoDetails::new)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found " + username));
+                .orElseThrow(() -> new UsernameNotFoundException("User Not Found " + username));
+    }
+
+    public UserInfo findUsername(String username){
+        return userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("User Not Found"));
+    }
+
+    public UserInfo findUserById(Long user_id){
+        return userRepository.findById(user_id).orElseThrow(() -> new RuntimeException("User Not Found"));
     }
 
     public boolean isInputNull(UserRequest request){

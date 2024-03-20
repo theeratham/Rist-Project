@@ -22,17 +22,15 @@ public class LyricsService {
         lyricsRepository.deleteById(lyrics_id);
     }
 
-    public void uploadLyrics(MultipartFile file, Long song_id) throws IOException {
-        Song song = songRepository.findById(song_id).orElseThrow(() -> new RuntimeException("Song Not Found"));
+    public void uploadLyrics(MultipartFile file) throws IOException {
         if (!file.isEmpty()){
             Lyrics lyrics = Lyrics.builder()
                     .file(file.getBytes())
-                    .song(song)
                     .build();
+            lyricsRepository.save(lyrics);
         } else {
             throw new RuntimeException("File Is Empty");
         }
     }
 
-    //TODO: link lyrics to song
 }
