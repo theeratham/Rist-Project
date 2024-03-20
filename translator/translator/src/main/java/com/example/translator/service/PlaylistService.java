@@ -11,6 +11,8 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PlaylistService {
     @Autowired
@@ -27,6 +29,10 @@ public class PlaylistService {
     public Playlist findPlaylistByName(String playlist_name){
         return playlistRepository.findByName(playlist_name).orElseThrow(
                 () -> new RuntimeException("Playlist Not Found"));
+    }
+
+    public List<Playlist> findAllPlaylist(){
+        return playlistRepository.findAll();
     }
 
     public boolean isInputNull(PlaylistRequest request){

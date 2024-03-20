@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserRequest } from 'src/app/component/user-request';
+import { UserRequest } from 'src/app/component/request/user-request';
 import { AuthenticationService } from 'src/app/service/authen/authentication.service';
 import { Location } from '@angular/common';
 

@@ -1,5 +1,6 @@
 package com.example.translator.controller;
 
+import com.example.translator.entity.Playlist;
 import com.example.translator.entity.request.PlaylistRequest;
 import com.example.translator.entity.response.DataResponse;
 import com.example.translator.repository.PlaylistRepository;
@@ -7,6 +8,8 @@ import com.example.translator.service.PlaylistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/playlist")
@@ -28,7 +31,13 @@ public class PlaylistController {
         }
     }
 
-
+    @GetMapping("/findAll")
+    public ResponseEntity<DataResponse> findAll(){
+        DataResponse response = new DataResponse();
+        List<Playlist> playlists = playlistService.findAllPlaylist();
+        response.setMessage(playlists);
+        return ResponseEntity.ok().body(response);
+    }
     @PostMapping("/addPlaylist")
     public ResponseEntity<DataResponse> addPlaylist(@RequestBody PlaylistRequest request){
         DataResponse response = new DataResponse();
