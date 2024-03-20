@@ -22,4 +22,6 @@ public class Artist {
 
     @ManyToMany
     private List<Song> songs = new ArrayList<>();
+
+    //TODO maybe change relationship on song & artist
 }
