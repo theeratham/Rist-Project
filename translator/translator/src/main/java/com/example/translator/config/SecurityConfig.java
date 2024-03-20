@@ -46,7 +46,7 @@ public class SecurityConfig {
                     corsConfig.setMaxAge(3600L);
                     return corsConfig;
                 }).and().csrf().disable()
-                .authorizeHttpRequests().requestMatchers("/auth/**","/admin/**","/user/**").permitAll()
+                .authorizeHttpRequests().requestMatchers("/auth/**","/album/**","/artist/**","/lyrics/**","/playlist/**","/song/**").permitAll()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
