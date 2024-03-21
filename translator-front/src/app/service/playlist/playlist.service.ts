@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { PlaylistRequest } from 'src/app/component/request/playlist-request';
 
 @Injectable({
   providedIn: 'root'
@@ -17,19 +18,19 @@ export class PlaylistService {
     return this.http.get<any[]>(`${this.url}/findAll`)
   }
 
-  createPlaylist() {
-    return
+  createPlaylist(PlaylistRequest: PlaylistRequest) {
+    return this.http.post<any>(`${this.url}/addPlaylist`,PlaylistRequest)
   }
 
-  editPlaylist() {
-    return
+  editPlaylist(name:string) {
+    return this.http.put<string>(`${this.url}/editPlaylist`,name)
   }
 
-  deletePlaylist() {
-    return
+  deletePlaylist(playlist_id:number) {
+    return this.http.delete<number>(`${this.url}/deletePlaylist/${playlist_id}`)
   }
 
-  addSongToPlaylist() {
-    return
+  addSongToPlaylist(song_id:number,playlist_id:number) {
+    return this.http.post<any>(`${this.url}/addPlaylist`,{song_id,playlist_id})
   }
 }

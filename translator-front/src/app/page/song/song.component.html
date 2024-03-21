@@ -1,6 +1,9 @@
 <app-nav-bar></app-nav-bar>
 <div class="container mt-5">
     <h1>All Song</h1>
+    <button type="button" class="rist-btn mr-2 p-2" (click)="openModal('artist')">Add Artist</button>
+    <button type="button" class="rist-btn mr-2 p-2" (click)="openModal('album')">Add Album</button>
+    <button type="button" class="rist-btn mb-3 p-2" (click)="openModal('lyrics')">Add Lyrics</button>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -8,38 +11,120 @@
                 <th>Title</th>
                 <th>Artist</th>
                 <th>Album</th>
-                <th>Duration</th>
+                <th><button type="button" class="btn-primary" (click)="openModal('song')">Add</button></th>
             </tr>
         </thead>
         <tbody>
-            <!-- <tr *ngFor="let song of songs; let i = index">
+            <tr *ngFor="let song of songs; let i = index">
                 <td>{{ i + 1 }}</td>
-                <td>{{ song.title }}</td>
+                <td>{{ song.name }}</td>
                 <td>{{ song.artist }}</td>
                 <td>{{ song.album }}</td>
-                <td>{{ song.duration }}</td>
-            </tr> -->
+                <td></td>
+            </tr>
         </tbody>
     </table>
 </div>
-<div bsModal #modal="bs-modal" class="modal fade" id="modal" tabindex="-1" role="dialog" [config]="{backdrop: 'static'}">
+<div bsModal #SongModal="bs-modal" class="modal fade" id="modal" tabindex="-1" role="dialog"
+    [config]="{backdrop: 'static'}">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modal">Modal title</h5>
-                <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+                <h5 class="modal-title" id="modal">Add Song</h5>
+                <button type="button" class="close" (click)="closeModal('song')" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-        <label for="audioFile">Audio File:</label>
-        <input type="file" class="form-control-file" id="audioFile" name="audioFile" (change)="onFileSelected($event)">
-    </div>
+                    <label for="song_name">Name:</label>
+                    <input type="text" class="form-control" name="song_name" id="song_name">
+                    <label for="file">File:</label>
+                    <input type="file" class="form-control-file" id="file" name="file">
+                    <label for="album_id">Album id:</label>
+                    <input type="number" class="form-control" name="album_id" id="album_id">
+                    <label for="lyrics_id">Lyrics id:</label>
+                    <input type="number" class="form-control" name="lyrics_id" id="lyrics_id">
+                </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
-                <button type="button" class="btn btn-primary" (click)="addSong()">Save changes</button>
+                <button type="button" class="btn btn-secondary" (click)="closeModal('song')">Close</button>
+                <button type="button" class="btn btn-primary" (click)="createSong()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div bsModal #ArtistModal="bs-modal" class="modal fade" id="modal" tabindex="-1" role="dialog"
+    [config]="{backdrop: 'static'}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal">Add Artist</h5>
+                <button type="button" class="close" (click)="closeModal('artist')" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="artist_name">Name:</label>
+                    <input type="text" class="form-control" name="artist_name" id="artist_name">
+                    <label for="description">Description:</label>
+                    <input type="text" class="form-control" name="description" id="description">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeModal('artist')">Close</button>
+                <button type="button" class="btn btn-primary" (click)="createArtist()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div bsModal #AlbumModal="bs-modal" class="modal fade" id="modal" tabindex="-1" role="dialog"
+    [config]="{backdrop: 'static'}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal">Add Album</h5>
+                <button type="button" class="close" (click)="closeModal('album')" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="album_name">Name:</label>
+                    <input type="text" class="form-control" name="album_name" id="album_name">
+                    <label for="year">Released year:</label>
+                    <input type="number" class="form-control" name="year" id="year">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeModal('album')">Close</button>
+                <button type="button" class="btn btn-primary" (click)="createAlbum()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div bsModal #LyricsModal="bs-modal" class="modal fade" id="modal" tabindex="-1" role="dialog"
+    [config]="{backdrop: 'static'}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal">Add Lyrics</h5>
+                <button type="button" class="close" (click)="closeModal('lyrics')" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" name="name" id="name">
+                    <label for="file">File:</label>
+                    <input type="file" class="form-control-file" name="file" id="file">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeModal('lyrics')">Close</button>
+                <button type="button" class="btn btn-primary" (click)="createLyrics()">Save changes</button>
             </div>
         </div>
     </div>

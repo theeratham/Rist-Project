@@ -3,6 +3,7 @@ package com.example.translator.service;
 import com.example.translator.entity.Album;
 import com.example.translator.entity.Lyrics;
 import com.example.translator.entity.Song;
+import com.example.translator.entity.request.SongRequest;
 import com.example.translator.repository.AlbumRepository;
 import com.example.translator.repository.LyricsRepository;
 import com.example.translator.repository.SongRepository;
@@ -39,19 +40,20 @@ public class SongService {
     public void deleteSong(Long song_id){
         songRepository.deleteById(song_id);
     }
-    public void uploadSong(MultipartFile file, Long album_id, Long lyrics_id) throws IOException {
-        if (!file.isEmpty()){
-            Album album = albumRepository.findById(album_id).orElseThrow(() -> new RuntimeException("Album Not Found"));
-            Lyrics lyrics = lyricsRepository.findById(lyrics_id).orElseThrow(() -> new RuntimeException("Lyrics Not Found"));
+
+    public void addSong(SongRequest request) throws IOException {
+        if (!request.getFile().isEmpty()){
+            Album album = albumRepository.findById(request.getAlbum_id()).orElseThrow(() -> new RuntimeException("Album Not Found"));
+            Lyrics lyrics = lyricsRepository.findById(request.getLyrics_id()).orElseThrow(() -> new RuntimeException("Lyrics Not Found"));
             Song song = Song.builder()
-                    .name(file.getOriginalFilename())
-                    .file(file.getBytes())
+                    .name(request.getFile().getOriginalFilename())
+                    .file(request.getFile().getBytes())
                     .album(album)
                     .lyrics(lyrics)
                     .build();
             songRepository.save(song);
         } else {
-            throw new RuntimeException("File Is Empty");
+            throw new IOException("File Is Empty");
         }
     }
 }

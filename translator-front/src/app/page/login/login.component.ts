@@ -20,13 +20,13 @@ export class LoginComponent {
     this.authService.login(this.request)
       .subscribe(
         data => {
-          console.log('Login successful', data);
-          this.router.navigate(["/home"]);
+          console.log('Login successful', data)
+          this.router.navigate(["/home"])
         },
         error => {
-          console.error('Login failed', error);
+          console.error('Login failed', error)
         }
-      );
+      )
   }
 
 

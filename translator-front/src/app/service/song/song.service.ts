@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { SongRequest } from 'src/app/component/request/song-request';
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +18,11 @@ export class SongService {
     return this.http.get<any[]>(`${this.url}/findAll`)
   }
 
-  createSong() {
-    return
+  createSong(songRequest: SongRequest) {
+    return this.http.post<any>(`${this.url}/addSong`,songRequest)
   }
 
-  deleteSong() {
-    return
+  deleteSong(song_id:number) {
+    return this.http.delete<any>(`${this.url}/deleteSong/${song_id}`)
   }
 }

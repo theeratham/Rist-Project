@@ -24,7 +24,7 @@ public class LyricsController {
         }
     }
 
-    @DeleteMapping("/deleteById")
+    @DeleteMapping("/deleteLyrics")
     public ResponseEntity<DataResponse> deleteLyrics(@RequestParam Long lyrics_id){
         DataResponse response = new DataResponse();
         if (lyrics_id != null){

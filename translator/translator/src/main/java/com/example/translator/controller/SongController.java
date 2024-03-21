@@ -1,7 +1,9 @@
 package com.example.translator.controller;
 
 import com.example.translator.entity.Song;
+import com.example.translator.entity.request.SongRequest;
 import com.example.translator.entity.response.DataResponse;
+import com.example.translator.repository.SongRepository;
 import com.example.translator.service.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,9 @@ import java.util.List;
 public class SongController {
     @Autowired
     private SongService songService;
+
+    @Autowired
+    private SongRepository songRepository;
 
     @GetMapping("/findAll")
     public ResponseEntity<DataResponse> findAll(){
@@ -49,11 +54,15 @@ public class SongController {
     }
 
     @PostMapping("/addSong")
-    public ResponseEntity<DataResponse> addSong(@RequestParam("file") MultipartFile file, @RequestParam Long album_id, @RequestParam Long lyrics_id){
+    public ResponseEntity<DataResponse> addSong(@RequestBody SongRequest request){
         DataResponse response = new DataResponse();
+        if (songRepository.existsByName(request.getFile().getOriginalFilename())){
+            response.setMessage("Song Name Already Existed");
+            return ResponseEntity.badRequest().body(response);
+        }
         try {
-            songService.uploadSong(file,album_id,lyrics_id);
-            response.setMessage("Song uploaded successfully!!");
+            songService.addSong(request);
+            response.setMessage("Song Added Successfully!!");
             return ResponseEntity.ok().body(response);
         } catch (Exception e){
             response.setMessage(e.getMessage());
