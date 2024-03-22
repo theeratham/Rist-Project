@@ -6,37 +6,42 @@ import { HomeComponent } from './page/home/home.component';
 import { PlaylistComponent } from './page/playlist/playlist.component';
 import { UserProfileComponent } from './page/user-profile/user-profile.component';
 import { SongComponent } from './page/song/song.component';
+import { AuthGuard } from './guard/auth-guard';
 
 const routes: Routes = [
-  { path: '' , redirectTo: '/login', pathMatch: 'full'},
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: 'register',
-    component: RegisterComponent
+    component: RegisterComponent,
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'playlist',
-    component: PlaylistComponent
+    component: PlaylistComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'user-profile',
-    component: UserProfileComponent
+    component: UserProfileComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'song',
-    component: SongComponent
-  }
+    component: SongComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

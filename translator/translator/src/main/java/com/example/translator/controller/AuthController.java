@@ -23,6 +23,8 @@ public class AuthController {
     private UserInfoService userInfoService;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private JwtService jwtService;
 
     @GetMapping("/findId")
     public ResponseEntity<DataResponse> findId(@RequestParam Long user_id){
@@ -52,8 +54,10 @@ public class AuthController {
     public ResponseEntity<DataResponse> authenticateUser(@RequestBody AuthRequest authRequest) {
         DataResponse response = new DataResponse();
         Authentication authentication = manager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
+
         if (authentication.isAuthenticated()){
-            response.setMessage("Welcome");
+            response.setMessage(jwtService.generateToken(authRequest.getUsername())
+            );
             return ResponseEntity.ok().body(response);
         } else {
             response.setMessage("Invalid User Request");

@@ -1,49 +1,83 @@
 <app-nav-bar></app-nav-bar>
 <div class="container mt-5">
-    <h1>All Playlist</h1>
-    <div class="row">
-        <div class="col-md-6" *ngFor="let playlist of playlists">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">{{ playlist.name }}</h5>
-                    <p class="card-text">{{ playlist.description }}</p>
-                    <a href="#" class="btn btn-primary">Open Playlist</a>
-                </div>
-            </div>
+  <h1>All Playlist</h1>
+  <div class="row">
+    <div class="col-md-6" *ngFor="let playlist of playlists">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">{{ playlist.name }}</h5>
+          <p class="card-text">{{ playlist.description }}</p>
+          <a href="#" class="btn btn-primary">Open Playlist</a>
         </div>
-        <div class="col-md-6">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <button type="button"><i class="bi bi-plus-circle-dotted" (click)="openModal()"></i></button>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="col-md-6">
+      <div class="card mb-3">
+        <div class="card-body">
+          <button type="button">
+            <i
+              style="font-size: 1.5rem"
+              class="bi bi-plus-circle-dotted"
+              (click)="openModal()"
+            ></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div bsModal #modal="bs-modal" class="modal fade" id="modal" tabindex="-1" role="dialog" [config]="{backdrop: 'static'}">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modal">Modal title</h5>
-                <button type="button" class="close" (click)="closeModal()" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="playlistName">Playlist Name:</label>
-                    <input type="text" class="form-control" id="playlistName" name="playlistName" placeholder="Enter playlist name">
-                </div>
-                <div class="form-group">
-                    <label for="playlistDescription">Playlist Description:</label>
-                    <textarea class="form-control" id="playlistDescription" name="playlistDescription" placeholder="Enter playlist description"></textarea>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
-                <button type="button" class="btn btn-primary" (click)="addPlaylist()">Save changes</button>
-            </div>
+<div
+  bsModal
+  #modal="bs-modal"
+  class="modal fade"
+  id="modal"
+  tabindex="-1"
+  role="dialog"
+  [config]="{ backdrop: 'static' }"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal">Modal title</h5>
+        <button
+          type="button"
+          class="close"
+          (click)="closeModal()"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="playlistName">Playlist Name:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="playlistName"
+            name="playlistName"
+            placeholder="Enter playlist name"
+          />
         </div>
+        <div class="form-group">
+          <label for="playlistDescription">Playlist Description:</label>
+          <textarea
+            class="form-control"
+            id="playlistDescription"
+            name="playlistDescription"
+            placeholder="Enter playlist description"
+          ></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary" (click)="addPlaylist()">
+          Save changes
+        </button>
+      </div>
     </div>
+  </div>
 </div>
