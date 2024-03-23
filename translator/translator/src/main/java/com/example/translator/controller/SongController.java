@@ -53,10 +53,21 @@ public class SongController {
         }
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<DataResponse> search(@RequestParam String input){
+        DataResponse response = new DataResponse();
+        if (!input.isEmpty()){
+            response.setMessage(songService.search(input));
+            return ResponseEntity.ok().body(response);
+        }
+        response.setMessage("90");
+        return ResponseEntity.badRequest().body(response);
+    }
+
     @PostMapping("/addSong")
     public ResponseEntity<DataResponse> addSong(@RequestBody SongRequest request){
         DataResponse response = new DataResponse();
-        if (songRepository.existsByName(request.getFile().getOriginalFilename())){
+        if (songRepository.existsByName(request.getSong_file().getOriginalFilename())){
             response.setMessage("Song Name Already Existed");
             return ResponseEntity.badRequest().body(response);
         }

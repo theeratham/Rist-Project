@@ -28,7 +28,7 @@ public class PlaylistService {
 
     public Playlist findPlaylistByName(String playlist_name){
         return playlistRepository.findByName(playlist_name).orElseThrow(
-                () -> new RuntimeException("Playlist Not Found"));
+                () -> new EntityNotFoundException("Playlist Not Found"));
     }
 
     public List<Playlist> findAllPlaylist(){
@@ -41,7 +41,7 @@ public class PlaylistService {
     }
 
     public void addPlaylist(PlaylistRequest request){
-        UserInfo user = userRepository.findById(request.getUser_id()).orElseThrow(() -> new RuntimeException("User Not Found"));
+        UserInfo user = userRepository.findById(request.getUser_id()).orElseThrow(() -> new EntityNotFoundException("User Not Found"));
         Playlist playlist = Playlist.builder()
                 .name(request.getPlaylist_name())
                 .user(user)
@@ -50,13 +50,13 @@ public class PlaylistService {
     }
 
     public void editPlaylist(Long playlist_id, String playlist_name){
-        Playlist playlist = playlistRepository.findById(playlist_id).orElseThrow(() -> new RuntimeException("Playlist Not Found"));
+        Playlist playlist = playlistRepository.findById(playlist_id).orElseThrow(() -> new EntityNotFoundException("Playlist Not Found"));
         playlist.setName(playlist_name);
         playlistRepository.save(playlist);
     }
     public void addSongToPlaylist(Long playlist_id, Long song_id){
-        Playlist playlist = playlistRepository.findById(playlist_id).orElseThrow(() -> new RuntimeException("Playlist Not Found"));
-        Song song = songRepository.findById(song_id).orElseThrow(() -> new RuntimeException("Song Not Found"));
+        Playlist playlist = playlistRepository.findById(playlist_id).orElseThrow(() -> new EntityNotFoundException("Playlist Not Found"));
+        Song song = songRepository.findById(song_id).orElseThrow(() -> new EntityNotFoundException("Song Not Found"));
         if (!playlist.getSongs().contains(song)){
             playlist.getSongs().add(song);
             playlistRepository.save(playlist);

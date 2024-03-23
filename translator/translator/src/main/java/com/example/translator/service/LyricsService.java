@@ -29,7 +29,7 @@ public class LyricsService {
                     .build();
             lyricsRepository.save(lyrics);
         } else {
-            throw new RuntimeException("File Is Empty");
+            throw new IOException("File Is Empty");
         }
     }
 

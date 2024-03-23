@@ -3,6 +3,7 @@ package com.example.translator.service;
 import com.example.translator.entity.UserInfo;
 import com.example.translator.entity.request.UserRequest;
 import com.example.translator.repository.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -30,11 +31,11 @@ public class UserInfoService implements UserDetailsService {
     }
 
     public UserInfo findUsername(String username){
-        return userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("User Not Found"));
+        return userRepository.findByUsername(username).orElseThrow(() -> new EntityNotFoundException("User Not Found"));
     }
 
     public UserInfo findUserById(Long user_id){
-        return userRepository.findById(user_id).orElseThrow(() -> new RuntimeException("User Not Found"));
+        return userRepository.findById(user_id).orElseThrow(() -> new EntityNotFoundException("User Not Found"));
     }
 
     public boolean isInputNull(UserRequest request){

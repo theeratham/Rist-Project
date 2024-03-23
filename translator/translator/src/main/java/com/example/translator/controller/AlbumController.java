@@ -1,5 +1,6 @@
 package com.example.translator.controller;
 
+import com.example.translator.entity.Album;
 import com.example.translator.entity.request.AlbumRequest;
 import com.example.translator.entity.response.DataResponse;
 import com.example.translator.repository.AlbumRepository;
@@ -7,6 +8,8 @@ import com.example.translator.service.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/album")
@@ -26,6 +29,14 @@ public class AlbumController {
             response.setMessage(e.getMessage());
             return ResponseEntity.badRequest().body(response);
         }
+    }
+
+    @GetMapping("/findAll")
+    public ResponseEntity<DataResponse> findAll(){
+        DataResponse response = new DataResponse();
+        List<Album> albums = albumService.findAllAlbum();
+        response.setMessage(albums);
+        return ResponseEntity.ok().body(response);
     }
 
     @PostMapping("/addAlbum")

@@ -3,8 +3,11 @@ package com.example.translator.service;
 import com.example.translator.entity.Album;
 import com.example.translator.entity.request.AlbumRequest;
 import com.example.translator.repository.AlbumRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class AlbumService {
@@ -16,9 +19,13 @@ public class AlbumService {
                 request.getAlbum_year() == null || request.getAlbum_year().isEmpty();
     }
 
+    public List<Album> findAllAlbum(){
+        return albumRepository.findAll();
+    }
+
     public Album findAlbumByName(String album_name){
         return albumRepository.findByName(album_name).orElseThrow(
-                () -> new RuntimeException("Album Not Found"));
+                () -> new EntityNotFoundException("Album Not Found"));
     }
 
     public void addAlbum(AlbumRequest request){

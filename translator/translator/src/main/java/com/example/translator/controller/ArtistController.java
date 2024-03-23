@@ -1,5 +1,6 @@
 package com.example.translator.controller;
 
+import com.example.translator.entity.Artist;
 import com.example.translator.entity.request.ArtistRequest;
 import com.example.translator.entity.response.DataResponse;
 import com.example.translator.repository.ArtistRepository;
@@ -8,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/Artist")
+@RequestMapping("/artist")
 public class ArtistController {
     @Autowired
     private ArtistService artistService;
@@ -26,6 +29,14 @@ public class ArtistController {
             response.setMessage(e.getMessage());
             return ResponseEntity.badRequest().body(response);
         }
+    }
+
+    @GetMapping("/findAll")
+    public ResponseEntity<DataResponse> findAll(){
+        DataResponse response = new DataResponse();
+        List<Artist> artists = artistService.findAllArtist();
+        response.setMessage(artists);
+        return ResponseEntity.ok().body(response);
     }
 
     @PostMapping("/addArtist")

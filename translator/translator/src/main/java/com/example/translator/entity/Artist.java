@@ -1,5 +1,6 @@
 package com.example.translator.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,9 +20,11 @@ public class Artist {
     private Long id;
     private String name;
     private String description;
+    private String picturePath;
 
-    @ManyToMany
+    @OneToMany(mappedBy = "artist")
+    @JsonIgnore
     private List<Song> songs = new ArrayList<>();
 
-    //TODO maybe change relationship on song & artist
+
 }

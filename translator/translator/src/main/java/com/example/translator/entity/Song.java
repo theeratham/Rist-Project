@@ -15,12 +15,16 @@ public class Song {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @Lob
-    private byte[] file;
+    private String filePath;
+    private String picturePath;
 
     @ManyToOne
     @JoinColumn(name = "album_id")
     private Album album;
+
+    @ManyToOne
+    @JoinColumn(name = "artist_id")
+    private Artist artist;
 
     @OneToOne
     @JoinColumn(name = "lyrics_id")
