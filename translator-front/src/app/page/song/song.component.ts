@@ -25,7 +25,7 @@ export class SongComponent implements OnInit {
   lyRequest: LyricsRequest = {}
 
 
-  songs: any[] = [];
+  songs: any[] = []
   constructor(
     private songService: SongService,
     private artistService: ArtistService,
@@ -34,7 +34,7 @@ export class SongComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.getAllSong()
+    this.getAllSong()
   }
 
   getAllSong() {

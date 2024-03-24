@@ -6,19 +6,17 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./search-bar.component.css']
 })
 export class SearchbarComponent implements OnInit {
+  @Output() searchEvent = new EventEmitter<string>()
+  searchInput:string = ''
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  searchQuery: string = '';
-  @Output() searchEvent = new EventEmitter<string>();
-
-  search(query: string) {
-    // Perform search logic here
-    console.log('Search query:', query);
-    // You can navigate to a search results page or update the current component's content based on the search query
+  onSearch() {
+    this.searchEvent.emit(this.searchInput)
   }
+
 
 }

@@ -1,6 +1,7 @@
 export interface SongRequest {
     name?:string
-    file?:File
+    song_file?:File
+    pic_file?:File
     album_id?:number
     lyrics_id?:number
 }

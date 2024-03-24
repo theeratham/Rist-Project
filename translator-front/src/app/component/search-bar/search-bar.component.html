@@ -1,4 +1,5 @@
-<form class="input-group">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchQuery">
+<form class="input-group" (submit)="onSearch()">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+        [(ngModel)]="searchInput">
     <button class="rist-outline-btn my-2 my-sm-0" type="submit">Search</button>
 </form>

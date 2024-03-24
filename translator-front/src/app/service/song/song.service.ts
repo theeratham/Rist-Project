@@ -25,4 +25,8 @@ export class SongService {
   deleteSong(song_id:number) {
     return this.http.delete<any>(`${this.url}/deleteSong/${song_id}`)
   }
+
+  search(input:string) {
+    return this.http.post<any>(`${this.url}/search`,input)
+  }
 }

@@ -1,6 +1,4 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ModalDirective } from 'ngx-bootstrap/modal';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,16 +6,11 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-  
-  constructor(private http: HttpClient) { }
+
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  onSearch(query: string) {
-    // Perform search logic here
-    console.log('Search query:', query)
-  }
 
-  
 }

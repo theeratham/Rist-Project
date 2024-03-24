@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { JwtPayload, jwtDecode } from 'jwt-decode';
 import { AuthenticationService } from 'src/app/service/authen/authentication.service';
-import { Router } from '@angular/router';
+import { SongService } from 'src/app/service/song/song.service';
 
 @Component({
   selector: 'app-home',
@@ -9,11 +9,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  user: JwtPayload;
+  user: JwtPayload
+  searchResult:any[] | undefined
 
-  constructor(private authService: AuthenticationService) {
-    this.user = authService.getTokenPayload();
+  constructor(
+    private authService: AuthenticationService,
+    private songService: SongService
+    ) {
+    this.user = authService.getTokenPayload()
   }
 
   ngOnInit(): void {}
+
+  onSearchInput(input: string) {
+    this.songService.search(input).subscribe((data) => {
+      this.searchResult = data;
+    });
+  }
+
 }
