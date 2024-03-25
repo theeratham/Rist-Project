@@ -1,0 +1,13 @@
+.playlist-card {
+  display: flex;
+  border: 1px solid #e1e1e1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  /* box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1); */
+}

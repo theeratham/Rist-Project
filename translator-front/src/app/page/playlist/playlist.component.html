@@ -11,44 +11,65 @@
       </div>
     </div>
     <div class="col-md-6">
-      <div class="card mb-3">
-        <div class="card-body">
-          <button type="button">
-            <i style="font-size: 1.5rem" class="bi bi-plus-circle-dotted" (click)="openModal()"></i>
-          </button>
-        </div>
-      </div>
+      <button type="button" class="playlist-card" (click)="openModal()">
+        <i style="font-size: 1.5rem" class="bi bi-plus-circle-dotted"></i>
+      </button>
     </div>
   </div>
 </div>
 
-<div bsModal #modal="bs-modal" class="modal fade" id="modal" tabindex="-1" role="dialog"
-  [config]="{ backdrop: 'static' }">
+<div
+  bsModal
+  #modal="bs-modal"
+  class="modal fade"
+  id="modal"
+  tabindex="-1"
+  role="dialog"
+  [config]="{ backdrop: 'static' }"
+>
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="modal">Modal title</h5>
-        <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+        <button
+          type="button"
+          class="close"
+          (click)="closeModal()"
+          aria-label="Close"
+        >
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <div class="form-group">
           <label for="playlistName">Playlist Name:</label>
-          <input type="text" class="form-control" id="playlistName" name="playlistName"
-            placeholder="Enter playlist name" />
+          <input
+            type="text"
+            class="form-control"
+            id="playlistName"
+            name="playlistName"
+            placeholder="Enter playlist name"
+          />
         </div>
         <div class="form-group">
           <label for="playlistDescription">Playlist Description:</label>
-          <textarea class="form-control" id="playlistDescription" name="playlistDescription"
-            placeholder="Enter playlist description"></textarea>
+          <textarea
+            class="form-control"
+            id="playlistDescription"
+            name="playlistDescription"
+            placeholder="Enter playlist description"
+          ></textarea>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="closeModal()">
           Close
         </button>
-        <button type="button" class="btn btn-primary" (click)="createPlaylist()">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="createPlaylist()"
+        >
           Save changes
         </button>
       </div>

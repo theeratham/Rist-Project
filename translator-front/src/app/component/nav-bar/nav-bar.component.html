@@ -1,24 +1,40 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" routerLink="/home">
-        <img src="assets/icon/rist_logo_2.png" alt="" width="80" height="50">
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/home"><i class="bi bi-house-door"></i></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/playlist">My Playlist</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/song">Song</a>
-            </li>
-        </ul>
-        <app-search-bar></app-search-bar>
-        <a class="nav-link" routerLink="/user-profile"><i class="bi bi-person-circle"></i></a>
-    </div>
+<nav class="navbar navbar-expand-lg navbar-dark my-navbar">
+  <a class="navbar-brand" routerLink="/home">
+    <img src="assets/icon/rist_logo_2.png" alt="" width="80" height="50" />
+  </a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/home"
+          ><i class="bi bi-house-door"></i><span class="pl-1">Home</span></a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/playlist">
+          <i class="bi bi-music-note-list"></i>
+          <span class="pl-1">My Playlist</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/song"
+          ><i class="bi bi-vinyl-fill"></i><span class="pl-1">Songs</span></a
+        >
+      </li>
+    </ul>
+    <app-search-bar></app-search-bar>
+    <a class="nav-link" routerLink="/user-profile"
+      ><i class="bi bi-person-circle" style="font-size: 2rem"></i
+    ></a>
+  </div>
 </nav>
