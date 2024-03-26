@@ -91,8 +91,8 @@ public class PlaylistController {
         }
     }
 
-    @DeleteMapping("/deletePlaylist")
-    public ResponseEntity<DataResponse> deletePlaylist(@RequestParam Long playlist_id){
+    @DeleteMapping("/deletePlaylist/{playlist_id}")
+    public ResponseEntity<DataResponse> deletePlaylist(@PathVariable Long playlist_id){
         DataResponse response = new DataResponse();
         if (playlist_id != null){
             playlistService.deletePlaylist(playlist_id);

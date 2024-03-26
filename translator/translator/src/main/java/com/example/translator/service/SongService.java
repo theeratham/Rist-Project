@@ -49,8 +49,8 @@ public class SongService {
 
     public void addSong(SongRequest request) throws IOException {
         if (!request.getPic_file().isEmpty() && !request.getSong_file().isEmpty()){
-            String songPath = "/resources/audio/" + request.getSong_file().getOriginalFilename();
-            String picPath = "/resources/picture/" + request.getPic_file().getOriginalFilename();
+            String songPath = "\\Rist-Project\\translator\\translator\\src\\main\\resources\\audio\\" + request.getSong_file().getOriginalFilename();
+            String picPath = "\\Rist-Project\\translator\\translator\\src\\main\\resources\\picture\\" + request.getPic_file().getOriginalFilename();
             Files.write(Paths.get(songPath),request.getSong_file().getBytes());
             Files.write(Paths.get(picPath),request.getPic_file().getBytes());
             Album album = albumRepository.findById(request.getAlbum_id()).orElseThrow(() -> new EntityNotFoundException("Album Not Found"));

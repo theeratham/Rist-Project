@@ -49,16 +49,17 @@ export class PlaylistComponent implements OnInit {
   }
 
   deletePlaylist(playlist_id: number) {
-    if (confirm('Are yuo sure you want to delete?')) {
-      this.playlistService.deletePlaylist(playlist_id).subscribe(
-        (data) => {
-          console.log('delete song successful', data);
-          this.getAllPlaylist();
-        },
-        (error) => {
-          console.log('delete failed', error);
-        }
-      );
+    if (confirm('Are you sure you want to delete?')) {
+      this.playlistService.deletePlaylist(playlist_id)
+        .subscribe(
+          data => {
+            console.log('delete song successful', data)
+            this.getAllPlaylist()
+          },
+          error => {
+            console.log('delete failed', error)
+          }
+        )
     }
   }
 }

@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class Lyrics {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private byte[] file;
+    private String filePath;
     private String name;
 
     @OneToOne(mappedBy = "lyrics")

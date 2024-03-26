@@ -1,4 +1,4 @@
 export interface AlbumRequest {
-    name?:string
-    year?:string
+    album_name?:string
+    album_year?:string
 }

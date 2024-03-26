@@ -1,5 +1,5 @@
 export interface ArtistRequest {
-    name?:string
+    artist_name?:string
     description?:string
     pic_file?:string
 }

@@ -33,7 +33,7 @@ public class ArtistService {
 
     public void addArtist(ArtistRequest request) throws IOException {
         if (!request.getPic_file().isEmpty()){
-            String picPath = "/resources/picture/" + request.getPic_file().getOriginalFilename();
+            String picPath = "\\Rist-Project\\translator\\translator\\src\\main\\resources\\picture\\" + request.getPic_file().getOriginalFilename();
             Files.write(Paths.get(picPath),request.getPic_file().getBytes());
             Artist artist = Artist.builder()
                     .name(request.getArtist_name())
@@ -42,7 +42,7 @@ public class ArtistService {
                     .build();
             artistRepository.save(artist);
         } else {
-            throw new IOException("File Is Empty");
+            throw new IOException("File IS Empty");
         }
     }
 }

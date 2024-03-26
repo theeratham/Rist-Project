@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LyricsRepository extends JpaRepository<Lyrics, Long> {
+    boolean existsByName(String name);
 }

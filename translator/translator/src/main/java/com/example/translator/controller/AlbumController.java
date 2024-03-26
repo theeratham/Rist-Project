@@ -47,14 +47,9 @@ public class AlbumController {
                 response.setMessage("Album Name Already Existed");
                 return ResponseEntity.badRequest().body(response);
             } else {
-                try {
-                    albumService.addAlbum(request);
-                    response.setMessage("Album Added Successfully!!");
-                    return ResponseEntity.ok().body(response);
-                } catch (Exception e){
-                    response.setMessage(e.getMessage());
-                    return ResponseEntity.badRequest().body(response);
-                }
+                albumService.addAlbum(request);
+                response.setMessage("Album Added Successfully!!");
+                return ResponseEntity.ok().body(response);
             }
         }
         response.setMessage("Input Field Cannot Be Empty");
