@@ -10,8 +10,8 @@ export class SongPlayerComponent implements OnInit {
   songUrl: string = 'https://samplelib.com/lib/preview/mp3/sample-12s.mp3';
   volume: number = 1;
   isPlaying: boolean = false;
-  songCurrentTime: number = 0;
-  songDuration: number = 0;
+  songCurrentTime: string = '';
+  songDuration: string = '';
 
   constructor() {}
 
@@ -20,7 +20,7 @@ export class SongPlayerComponent implements OnInit {
       'audio-player-player'
     )! as HTMLAudioElement;
     this.audioPlayer.load();
-    this.songDuration = this.audioPlayer.duration;
+    this.songDuration = String(this.audioPlayer.duration);
   }
 
   setVolume(volumeChangeEvent: any) {
@@ -35,6 +35,12 @@ export class SongPlayerComponent implements OnInit {
     }
   }
 
+  formatTime(time: number): string {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  }
+
   updateTrackTime() {
     const currTime = this.audioPlayer.currentTime;
     const duration = this.audioPlayer.duration;
@@ -42,6 +48,7 @@ export class SongPlayerComponent implements OnInit {
     document.getElementById('song-progress-progress')!.style.width = `${
       trackProgress * 100
     }%`;
-    console.log(document.getElementById('song-progress-progress')!);
+    this.songCurrentTime = this.formatTime(Math.round(currTime));
+    this.songDuration = this.formatTime(Math.round(duration));
   }
 }
