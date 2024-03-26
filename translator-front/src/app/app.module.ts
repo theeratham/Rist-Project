@@ -16,6 +16,7 @@ import { PlaylistComponent } from './page/playlist/playlist.component';
 import { SongPlayerComponent } from './component/song-player/song-player.component';
 import { SongComponent } from './page/song/song.component';
 import { AuthGuard } from './guard/auth-guard';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { AuthGuard } from './guard/auth-guard';
     HttpClientModule,
     ModalModule.forRoot(),
     AppRoutingModule,
+    ImageCropperModule,
   ],
   providers: [HttpClient, AuthGuard],
   bootstrap: [AppComponent],

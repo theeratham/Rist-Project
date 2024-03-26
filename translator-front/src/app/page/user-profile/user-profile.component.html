@@ -1,13 +1,86 @@
 <app-nav-bar></app-nav-bar>
-<div class="">
-  <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="profile-block col-md-4 p-3">
-        <h4>User Profile</h4>
-        <p>Username: {{ username }}</p>
-        <p>Email: {{ email }}</p>
-        <p>Name: {{ name }}</p>
-        <p>Lastname: {{ lastname }}</p>
+<div class="primary-bg">
+  <div class="container">
+    <div class="col">
+      <div class="row pt-3 justify-content-center">
+        <div class="position-relative">
+          <img
+            class="profile-upper-image"
+            src="https://i.pinimg.com/originals/15/6f/bb/156fbb01d3ec2f7ea869e06bf34351dc.jpg"
+          />
+          <label for="file" class="change-image-button btn btn-secondary">
+            <i class="bi bi-pencil-fill"></i><span>Edit</span>
+          </label>
+          <input
+            hidden
+            id="file"
+            name="file"
+            type="file"
+            (change)="fileChangeEvent($event)"
+          />
+        </div>
+      </div>
+      <div class="row pt-3 justify-content-center">
+        <div class="profile-block col-md-4 p-3">
+          <h4>User Profile</h4>
+          <p>Username: {{ username }}</p>
+          <p>Email: {{ email }}</p>
+          <p>Name: {{ name }}</p>
+          <p>Lastname: {{ lastname }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <img [src]="croppedImage" />
+</div>
+
+<div
+  bsModal
+  #modal="bs-modal"
+  class="modal fade"
+  id="modal"
+  tabindex="-1"
+  role="dialog"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Edit image</h4>
+        <button
+          type="button"
+          class="btn-close close pull-right"
+          aria-label="Close"
+          (click)="closeModal()"
+        >
+          <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <image-cropper
+          [imageChangedEvent]="imageChangedEvent"
+          [maintainAspectRatio]="true"
+          [aspectRatio]="1"
+          format="png"
+          (imageCropped)="imageCropped($event)"
+          (imageLoaded)="imageLoaded($event)"
+          (cropperReady)="cropperReady()"
+          (loadImageFailed)="loadImageFailed()"
+        ></image-cropper>
+      </div>
+
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+          (click)="closeModal()"
+        >
+          Cancel
+        </button>
+        <button type="button" class="btn btn-primary" (click)="cropFinished()">
+          Apply
+        </button>
       </div>
     </div>
   </div>

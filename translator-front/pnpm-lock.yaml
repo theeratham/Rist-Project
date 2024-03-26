@@ -41,6 +41,9 @@ dependencies:
   ngx-bootstrap:
     specifier: ^6.2.0
     version: 6.2.0(@angular/common@12.2.17)(@angular/core@12.2.17)
+  ngx-image-cropper:
+    specifier: ^7.2.1
+    version: 7.2.1(@angular/common@12.2.17)(@angular/core@12.2.17)
   rxjs:
     specifier: ~6.6.0
     version: 6.6.7
@@ -5646,6 +5649,17 @@ packages:
     dependencies:
       '@angular/common': 12.2.17(@angular/core@12.2.17)(rxjs@6.6.7)
       '@angular/core': 12.2.17(rxjs@6.6.7)(zone.js@0.11.8)
+    dev: false
+
+  /ngx-image-cropper@7.2.1(@angular/common@12.2.17)(@angular/core@12.2.17):
+    resolution: {integrity: sha512-SRsY9ar+sGbdzQ1D37PQicSkqaMX7n2ADvz8FdHUjGMGYbLjKe0o6fKhy5QKfV7dS6aD1VqhNr0fr486B1r2NA==}
+    peerDependencies:
+      '@angular/common': '>=13.0.0'
+      '@angular/core': '>=13.0.0'
+    dependencies:
+      '@angular/common': 12.2.17(@angular/core@12.2.17)(rxjs@6.6.7)
+      '@angular/core': 12.2.17(rxjs@6.6.7)(zone.js@0.11.8)
+      tslib: 2.6.2
     dev: false
 
   /nice-napi@1.0.2:
