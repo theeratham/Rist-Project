@@ -1,3 +1,58 @@
-<div class="music-player container bg-dark p-5">
-   
+<div class="music-player">
+  <div class="song-desc my-left">
+    <div class="player__img">
+      <img
+        src="https://i.scdn.co/image/ab67616d000048513150015b020fe6c620b38e63"
+        alt="album cover"
+        class="album-cover-img"
+      />
+    </div>
+    <div class="player-info">
+      <div class="player-info-name">Song Name</div>
+      <div class="player-info-artist">Artist Name</div>
+    </div>
+
+    <audio
+      [src]="songUrl"
+      id="audio-player-player"
+      (timeupdate)="updateTrackTime()"
+      ngModel
+      #audioPlayer
+    ></audio>
+  </div>
+  <div class="my-center">
+    <div class="song-control">
+      <button (click)="togglePlayPause()" class="song-control-playpause">
+        <i class="bi bi-play-fill" style="font-size: 2rem"></i>
+      </button>
+    </div>
+    <div class="song-progress-full">
+      <div id="song-progress-progress" class="song-progress-progress"></div>
+    </div>
+    <div>
+      <div class="song-time">
+        <span id="song-current-time">{{ songCurrentTime }}</span> /
+        <span id="song-duration">{{ songDuration }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="my-right">
+    <div class="vol-control">
+      <!-- <i class="bi vol-icon bi-volume-mute"></i> -->
+      <!-- <i class="bi vol-icon bi-volume-off"></i> -->
+      <!-- <i class="bi vol-icon bi-volume-down"></i> -->
+      <i class="bi vol-icon bi-volume-up"></i>
+
+      <input
+        type="range"
+        class="player-volume"
+        style="--l: 1.5px; --s: 16px"
+        min="0"
+        max="1"
+        step="0.01"
+        [value]="volume"
+        (input)="setVolume($event)"
+      />
+    </div>
+  </div>
 </div>
